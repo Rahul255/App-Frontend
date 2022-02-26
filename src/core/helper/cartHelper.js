@@ -1,3 +1,4 @@
+//add item to the cart
 export const addItemToCart = (item, next) => {
     let cart = []
     if(typeof window !== undefined) {
@@ -21,3 +22,23 @@ export const loadCart = () => {
         }
     }
 }
+
+//remove data from the cart
+export const removeItemFromCart = productId => {
+    let cart = []
+    if(typeof window !== undefined) {
+        if(localStorage.getItem("cart")){
+            cart = JSON.parse(localStorage.getItem("cart"))
+        }
+        cart.map((product, i) => {
+            if(product.id === productId){
+                cart.splice(i,1)
+            }
+        })
+        localStorage.setItem("cart", JSON.stringify(cart))
+    }
+    return cart;
+}
+
+
+
