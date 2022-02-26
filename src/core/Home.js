@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Base from './Base';
 import { getProducts } from "./helper/coreapicalls";
 import "../styles.css"
+import Card from './Card';
+
 
 
 function Home() {
@@ -31,7 +33,7 @@ function Home() {
         {products.map((product, index) => {
           return (
             <div key={index} className="col-4 mb-4">
-              <h1>{product.name}</h1>
+              <Card product={product}/>
             </div>
           )
         })}
