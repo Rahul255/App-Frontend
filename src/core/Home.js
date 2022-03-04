@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <Base title="Home Page">
-      <h1>hai how are yopu</h1>
+      <h1>hai how are you</h1>
       <div className="row">
         {products.map((product, index) => {
           return (
