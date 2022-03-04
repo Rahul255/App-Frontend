@@ -18,6 +18,65 @@ const Signup = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
+  /*button onclick submit*/
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setValues({ ...values, error: false })
+    signup({ name, email, password })
+      .then((data) => {
+        console.log("DATA", data);
+        if (data.email === email) {
+          setValues({
+            ...values,
+            name: "",
+            email: "",
+            password: "",
+            error: "",
+            success: true
+          })
+        } else {
+          setValues({
+            ...values,
+            error: true,
+            success: false
+          })
+        }
+      })
+      .catch(e => console.log(e));
+  };
+
+  /*succes message field  */
+  const successMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-success"
+            style={{ display: success ? "" : "none" }}
+          >
+            New Content created successfully. <Link to="/signin">please login now</Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  /*error message field when login credentials not correct */
+  const errorMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            Check all Fields again
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   /**sigun up form */
   const signupForm = () => {
     return (
@@ -36,7 +95,7 @@ const Signup = () => {
               <label className="text-light">Password</label>
               <input className="form-control" value={password} onChange={handleChange("password")} type="password" />
             </div>
-            <button className="btn btn-success btn-block"> Submit</button>
+            <button onClick={onSubmit} className="btn btn-success btn-block"> Submit</button>
           </form>
         </div>
       </div>
@@ -45,6 +104,8 @@ const Signup = () => {
 
   return (
     <Base title="sign up page" description="A sign up page for user">
+      {successMessage()}
+      {errorMessage()}
       {signupForm()}
       <p className="text-white text-center">
         {JSON.stringify(values)}

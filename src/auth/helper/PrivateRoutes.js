@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route, Navigate } from "react-router-dom";
+import { Router, Navigate } from "react-router-dom";
 import { isAuthenticated } from "./index";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
-    <Route
+    <Router
       {...rest}
       render={(props) =>
         isAuthenticated() ? (
@@ -14,7 +14,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             to={{
               pathname: "/signin",
               state: { from: props.location },
-            }}
+            }} replace
           />
         )
       }
