@@ -115,7 +115,7 @@ const Signin = () => {
                             <label className="text-light">Password</label>
                             <input className="form-control" value={password} onChange={handleChange("password")} type="password" />
                         </div>
-                        <button onClick={() => {}} className="btn btn-success btn-block"> Submit</button>
+                        <button onClick={onSubmit} className="btn btn-success btn-block"> Submit</button>
                     </form>
                 </div>
             </div>
@@ -123,8 +123,10 @@ const Signin = () => {
     }
     return (
         <Base title="Welcome to signin page" description="A tshirt store">
+            {loadingMessage()}
             {signInForm()}
             <p className="text-center">{JSON.stringify(values)}</p>
+            {performRedirect()}
         </Base>
     )
 }
