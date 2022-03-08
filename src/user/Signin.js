@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Base from '../core/Base'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { authenticate, isAuthenticated, signin } from '../auth/helper'
 
 
@@ -51,7 +51,7 @@ const Signin = () => {
     /**have some problem here need to fix that */
     const performRedirect = () => {
         if (isAuthenticated()) {
-            return <Navigate to="/" />
+            return <Redirect to="/" />
         }
         // else{
         //     return <Redirect to="/signin" />

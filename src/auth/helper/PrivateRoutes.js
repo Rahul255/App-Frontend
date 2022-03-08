@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Navigate } from "react-router-dom";
+import { Router, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./index";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         isAuthenticated() ? (
           <Component {...props} />
         ) : (
-          <Navigate
+          <Redirect
             to={{
               pathname: "/signin",
               state: { from: props.location },

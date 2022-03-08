@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageHelper from './helper/imageHelper';
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { addItemToCart,removeItemFromCart } from './helper/cartHelper';
 
 
@@ -27,7 +27,7 @@ const Card = ({
     }
     const getAredirect = redirect => {
         if (redirect) {
-            return <Navigate to="/cart" />
+            return <Redirect to="/cart" />
         }
     }
     const showAddToCart = addToCart => {
